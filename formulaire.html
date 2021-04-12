@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+ <head>
+  <meta charset="utf-8">
+  <title>Mon Premier Formulaire</title>
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link href="star-rating.css" media="all" rel="stylesheet" type="text/css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="star-rating.js" type="text/javascript"></script>
+ </head>
+ <body>
+  <h1>Votre Avis Nous Intéresse</h1>
+  <form method="post" action="#">
+   <div>
+    <table align="center" border="0">
+	 <tr>
+	  <td valign="top">
+	   <fieldset>
+	    <legend>Informations Personnelles</legend> <!-- Titre du fieldset -->
+		<ol>
+		 <li>
+		  <label for="nom">Nom </label>
+		  <input type="text" name="nom" id="nom" />
+		 </li>
+		 <li>
+		  <label for="prenom">Date de naissance </label>
+		  <input type="date" name="naissance" id="naissance" />
+		 </li>
+		 <li>
+		  <label for="email">Site </label>
+		  <input type="site" id="site" name="site" placeholder="http://monsite.com" required>
+		 </li>
+		 <li>
+		  <label for="emploi">Emploi </label>
+		  <select name="emploi" id="emploi">
+		   <option value="etudiant">Etudiant</option>
+		   <option value="adminetwork">Administrateur Réseau</option>
+		   <option value="devlopweb">Développeur web</option>
+		   <option value="devlopweb">Web designer</option>
+		   <option value="devops">DevOps</option>
+		  </select>
+		 </li>
+		 <li>
+		  <label for="salaire">Approx. Salaire annuel </label>
+		  <input type="number" step="1000" id="salaire" name="salaire" placeholder="$" required>
+		 </li>
+		</ol>
+	   </fieldset>
+	  </td>
+	  <td valign="top">
+	   <fieldset>
+	    <legend>Informations Personnelles</legend> <!-- Titre du fieldset -->
+		<ol>
+		 <li>
+		  <label for="nom">Adresse ligne 1 </label>
+		  <input type="text" name="nom" id="nom" />
+		 </li>
+		 <li>
+		  <label for="prenom">Adresse ligne 2 </label>
+		  <input type="text" name="prenom" id="prenom" />
+		 </li>
+		 <li>
+		  <label for="email">Pays </label>
+		  <input type="text" name="pays" id="pays" />
+		 </li>
+		 <li>
+		  <label for="email">Tél </label>
+		  <input type="text" name="phone" id="phone" placeholder="eg: +213 67 ..." required>
+		 </li>
+		 <li>
+		  <label for="email">Courriel </label>
+		  <input type="text" name="courriel" id="courriel" />
+		 </li>
+		</ol>
+	   </fieldset>
+	  </td>
+	 </tr>
+	</table>
+   </div>
+   <h2>Préférences</h2>
+   <div>
+    <label for="choicol">Choisir une couleur </label>
+	<input type="color" value="#000000"id="choicol">
+   </div>
+   <div>
+    <label for="rating">Sur une échelle de 1 à 10, quel est votre degré d'enthousiasme pour HTML5 ? </label>
+	<input id="input-21b" value="5" type="text" class="rating" data-min=0 data-max=10 data-step=0.2 data-size="lg">
+   </div>
+   <div><input type="submit" value="Envoyer"></div>
+  </form>
+  <script>
+        jQuery(document).ready(function () {
+            $("#input-21f").rating({
+                starCaptions: function (val) {
+                    if (val < 3) {
+                        return val;
+                    } else {
+                        return 'high';
+                    }
+                },
+                starCaptionClasses: function (val) {
+                    if (val < 3) {
+                        return 'label label-danger';
+                    } else {
+                        return 'label label-success';
+                    }
+                },
+                hoverOnClear: false
+            });
+            var $inp = $('#rating-input');
+
+            $inp.rating({
+                min: 0,
+                max: 5,
+                step: 1,
+                size: 'lg',
+                showClear: false
+            });
+
+            $('#btn-rating-input').on('click', function () {
+                $inp.rating('refresh', {
+                    showClear: true,
+                    disabled: !$inp.attr('disabled')
+                });
+            });
+
+
+            $('.btn-danger').on('click', function () {
+                $("#kartik").rating('destroy');
+            });
+
+            $('.btn-success').on('click', function () {
+                $("#kartik").rating('create');
+            });
+
+            $inp.on('rating.change', function () {
+                alert($('#rating-input').val());
+            });
+
+
+            $('.rb-rating').rating({
+                'showCaption': true,
+                'stars': '3',
+                'min': '0',
+                'max': '3',
+                'step': '1',
+                'size': 'xs',
+                'starCaptions': {0: 'status:nix', 1: 'status:wackelt', 2: 'status:geht', 3: 'status:laeuft'}
+            });
+            $("#input-21c").rating({
+                min: 0, max: 8, step: 0.5, size: "xl", stars: "8"
+            });
+        });
+  </script>
+ </body>
+</html>
